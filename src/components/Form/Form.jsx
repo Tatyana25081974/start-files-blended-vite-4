@@ -1,23 +1,44 @@
-import { FiSearch } from 'react-icons/fi';
 
-import style from './Form.module.css';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../../redux/todosSlice';
+import { nanoid } from 'nanoid';
+import css from './Form.module.css';
 
-const Form = () => {
+export default function Form() {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const text = form.elements.text.value.trim();
+
+    if (text === '') {
+      alert('Введіть текст завдання!');
+      return;
+    }
+
+    const newTodo = {
+      id: nanoid(),       // створюємо унікальний id
+      text,               // текст тудушки
+    };
+
+    dispatch(addTodo(newTodo)); // відправляємо в Redux
+    form.reset();               // очищаємо форму
+  };
+
   return (
-    <form className={style.form}>
-      <button className={style.button} type="submit">
-        <FiSearch size="16px" />
-      </button>
-
+    <form className={css.form} onSubmit={handleSubmit}>
       <input
-        className={style.input}
-        placeholder="What do you want to write?"
-        name="search"
-        required
-        autoFocus
+        className={css.input}
+        type="text"
+        name="text"
+        placeholder="Введіть завдання"
       />
+      <button className={css.button} type="submit">
+        Додати
+      </button>
     </form>
   );
-};
+}
 
-export default Form;

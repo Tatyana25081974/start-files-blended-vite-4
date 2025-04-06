@@ -1,27 +1,50 @@
-import { RiSaveLine } from 'react-icons/ri';
-import { MdOutlineCancel } from 'react-icons/md';
 
-import style from './EditForm.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateTodo, clearCurrentTodo } from '../../redux/todosSlice';
+import { selectCurrentTodo } from '../../redux/selectors';
+import css from './EditForm.module.css';
 
-const EditForm = () => {
+export default function EditForm() {
+  const dispatch = useDispatch();
+  const currentTodo = useSelector(selectCurrentTodo); // отримуємо що редагуємо
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const text = form.elements.text.value.trim();
+
+    if (text === '') {
+      alert('Поле не може бути пустим!');
+      return;
+    }
+
+    dispatch(updateTodo({ id: currentTodo.id, text })); // оновлюємо текст задачі
+    form.reset();
+  };
+
+  const handleCancel = () => {
+    dispatch(clearCurrentTodo()); // відміняємо редагування
+  };
+
   return (
-    <form className={style.form}>
+    <form className={css.form} onSubmit={handleSubmit}>
       <input
-        className={style.input}
-        placeholder="What do you want to write?"
+        className={css.input}
+        type="text"
         name="text"
-        required
-        defaultValue={''}
-        autoFocus
+        defaultValue={currentTodo.text} // початковий текст задачі
+        placeholder="Відредагуйте завдання"
       />
-      <button className={style.submitButton} type="submit">
-        <RiSaveLine color="green" size="16px" />
-      </button>
 
-      <button className={style.editButton} type="button">
-        <MdOutlineCancel color="red" size="16px" />
-      </button>
+      <div className={css.buttons}>
+        <button type="submit" className={css.saveButton}>
+          Зберегти
+        </button>
+        <button type="button" onClick={handleCancel} className={css.cancelButton}>
+          Відмінити
+        </button>
+      </div>
     </form>
   );
-};
-export default EditForm;
+}
+

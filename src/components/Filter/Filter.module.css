@@ -1,31 +1,25 @@
-.input {
-  display: block;
-  width: 200px;
-  height: 40px;
-  margin: 0 auto;
-  margin-bottom: 60px;
-  border-style: none;
-
-  border-bottom: 2px solid #212121;
-  background-color: transparent;
-
-  outline: none;
-
-  transition: var(--animation-cubicBezier);
-
-  font-size: var(--font-medium);
-  color: var(--color-dark);
-  font-weight: 300;
-  letter-spacing: 0.03em;
-
-  &::placeholder {
-    text-align: center;
-    font-weight: 200;
-    color: var(--color-gray);
-  }
+.filter {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
-.input:hover,
+.input {
+  width: 300px;
+  padding: 12px 16px;
+  font-size: 18px;
+  background-color: #0a0a0a;
+  border: 2px solid #00ffff;
+  border-radius: 12px;
+  color: #00ffff;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input::placeholder {
+  color: #00ffff99;
+}
+
 .input:focus {
-  box-shadow: var(--shadow-regular);
+  box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
 }

@@ -31,3 +31,9 @@
 .bottom {
   margin-bottom: 50px;
 }
+.heading {
+  font-size: 36px;
+  text-align: center;
+  color: #00d1ff;
+  margin-bottom: 40px;
+}

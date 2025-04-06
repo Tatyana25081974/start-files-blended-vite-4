@@ -1,42 +1,50 @@
+
+
 .box {
-  padding: 40px;
-  background-color: var(--color-light);
-  border-radius: 8px;
-
-  color: var(--color-gray);
-  box-shadow: var(--shadow-regular);
-
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 160px;
+  /* Фіксована висота */
+  background-color: #111827;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 0 10px #00ffff50, 0 0 20px #00ffff30;
+  overflow: hidden;
+  transition: 0.3s;
 }
 
-.button {
-  position: absolute;
-
-  right: 0;
-
-  padding: 20px;
-  transition: transform var(--animation-cubicBezier);
-}
-.button:hover,
-.button:focus {
+.box:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
 }
 
-.button:disabled {
-  color: var(--color-gray);
-  pointer-events: none;
+.deleteButton,
+.editButton {
+  position: absolute;
+  top: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .deleteButton {
-  composes: button;
-  top: 0;
-  color: var(--color-red);
+  right: 10px;
+  color: #ff006e;
 }
 
 .editButton {
-  composes: button;
-  bottom: 0;
-  color: var(--color-lightBlue);
+  left: 10px;
+  color: #9b5de5;
+}
+
+.deleteButton:hover,
+.editButton:hover {
+  transform: scale(1.2);
+  filter: brightness(1.5);
 }

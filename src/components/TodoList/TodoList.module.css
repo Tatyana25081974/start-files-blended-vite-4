@@ -1,0 +1,30 @@
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* Гнучко! */
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 100%;
+    
+
+    box-sizing: border-box;
+    background-color: #0a0a0a;
+    border-radius: 16px;
+    box-shadow: 0 0 20px #00ffff33, 0 0 40px #00ffff22;
+}
+
+/* Адаптивність */
+@media (max-width: 1200px) {
+    .list {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .list {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        max-width: 100%;
+    }
+}
